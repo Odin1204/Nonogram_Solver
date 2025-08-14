@@ -69,9 +69,9 @@ class gamefield:
         row_blocks = [extract_blocks(row) for row in grid]
         col_blocks = [extract_blocks([grid[r][c] for r in range(size)]) for c in range(size)]
 
-       # print("Generated field:")
-        #for i in range(size):
-            #print("".join([("⬛" if (grid[i][j] > 0) else "⬜") for j in range(size)]))
+        print("Generated field:")
+        for i in range(size):
+            print("".join([("⬛" if (grid[i][j] > 0) else "⬜") for j in range(size)]))
 
         print("Solving field...")
         return cls(size,size, col_blocks, row_blocks)
@@ -121,8 +121,8 @@ class gamefield:
 
             if self.check_solution(satisfying_assignment):
                 print("valid")
-                #for i in range(self.height):
-                #    print("".join([("⬛" if (satisfying_assignment[i*self.width+j] > 0) else "⬜") for j in range(self.width)]))
+                for i in range(self.height):
+                    print("".join([("⬛" if (satisfying_assignment[i*self.width+j] > 0) else "⬜") for j in range(self.width)]))
             else:
                 print("Error in solver")
         else:
