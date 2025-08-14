@@ -191,7 +191,7 @@ class dfa:
             self.transitions[(1,True)] = 2
             self.add_all_transitions(block)
         else:
-            self.transitions[(1,False)] = 0
+            self.transitions[(1,True)] = 0
             self.goal_state = 1
 
         return
@@ -239,6 +239,12 @@ class dfa:
         return "\n".join(lines)
 
     def add_automata_to_sat(self, solver):
+        
+        if (self.goal_state == 1):
+            for var in self.input:
+                solver.add_clause([-var])
+            return
+
         input_len = len(self.input)
 
         state_to_variable_map: dict[tuple[int, int], int] = {}
